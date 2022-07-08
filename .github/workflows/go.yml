@@ -1,0 +1,25 @@
+name: Go CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  
+jobs:     
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout commit
+      uses: actions/checkout@v3
+
+    - name: Setup Go
+      uses: actions/setup-go@v3
+      with:
+        dotnet-version: 1.18
+
+    - name: Build
+      run: go build
+
+    - name: Test
+      run: go test
